@@ -5,7 +5,7 @@ import { BookX, MonitorOff, Users, BriefcaseBusiness } from "lucide-react";
 
 const painPoints = [
   { icon: BookX, title: "ספרים שנשכחים או נהרסים", desc: "תלמידים שוכחים ספרים בבית או שהם נהרסים לאורך השנה" },
-  { icon: MonitorOff, title: "חוסר שליטה במסכים", desc: "אין למורים כלים לנהל את מה שהתלמידים עושים בטאבלט" },
+  { icon: MonitorOff, title: "חוסר שליטה במסכים", desc: "אין למורים כלים לנהל את כל מה שהתלמידים עושים בזמן שיעור ובמהלך למידה מהבית (שיעורי בית)" },
   { icon: Users, title: "קושי במעקב תלמידים", desc: "מעקב אחרי ביצועים והתקדמות דורש זמן ומאמץ רב" },
   { icon: BriefcaseBusiness, title: "עומס על מורים", desc: "מורים מבלים יותר זמן בניהול ופחות בהוראה" },
 ];
