@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Tablet, BookOpen, ShieldCheck, WifiOff, LayoutList } from "lucide-react";
+import { Tablet, BookOpen, ShieldCheck, WifiOff, LayoutList, MessageCircle } from "lucide-react";
 
 const features = [
   { icon: Tablet, title: "ניהול לימודים מלא דרך טאבלט", desc: "כל מה שצריך במכשיר אחד" },
@@ -8,6 +8,7 @@ const features = [
   { icon: ShieldCheck, title: "שליטה במסכי תלמידים", desc: "המורה רואה ושולט בכל המסכים בזמן אמת" },
   { icon: WifiOff, title: "חסימת אינטרנט", desc: "שליטה מלאה בגישה לאינטרנט בזמן השיעור" },
   { icon: LayoutList, title: "יצירת סדר ומשמעת", desc: "כלים חכמים לניהול כיתה אפקטיבי" },
+  { icon: MessageCircle, title: "קשר אישי בין מורה לתלמיד ובין מורה להורה", desc: "יכולת השארת הודעות ותקשורת אישית בין המשולש החשוב ביותר — הורה, תלמיד והמורים" },
 ];
 
 const Solution = () => {
@@ -21,10 +22,21 @@ const Solution = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-black text-center text-foreground mb-16"
+          className="text-3xl md:text-5xl font-black text-center text-foreground mb-4"
         >
           אז מה זה בעצם <span className="gradient-text">JOTIT</span>?
         </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-center text-muted-foreground text-lg leading-relaxed max-w-3xl mx-auto mb-16"
+        >
+          ג'וט-איט מחברת בין מרחב הלמידה הפיזי והדיגיטלי.
+          <br />
+          המערכת יוצרת סביבה מסודרת ונגישה לחומרי הלימוד, דרכה ניתן להשלים ולהגיש משימות, ומשתלבת עם מערכת ניהול הלמידה של בית הספר.
+        </motion.p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {features.map((f, i) => (

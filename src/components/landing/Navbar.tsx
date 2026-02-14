@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import jotitLogo from "@/assets/jotit-logo.png";
 
 const navLinks = [
   { label: "מה זה JOTIT", href: "#what-is-jotit" },
@@ -34,9 +35,9 @@ const Navbar = () => {
         <motion.a
           href="#"
           whileHover={{ scale: 1.03, filter: "drop-shadow(0 0 12px hsl(190 85% 45% / 0.5))" }}
-          className="text-2xl font-black text-hero-foreground tracking-wider"
+          className="block"
         >
-          JOTIT
+          <img src={jotitLogo} alt="JOTIT" className="h-10 w-auto" />
         </motion.a>
 
         {/* Desktop links */}
