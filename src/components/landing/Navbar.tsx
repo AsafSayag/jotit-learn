@@ -41,19 +41,19 @@ const Navbar = () => {
         </motion.a>
 
         {/* Desktop links */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-4 lg:gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-hero-foreground/80 hover:text-hero-foreground transition-colors text-sm font-medium relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:right-0 after:bg-accent after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100"
+              className="text-hero-foreground/80 hover:text-hero-foreground transition-colors text-xs lg:text-sm font-medium relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:right-0 after:bg-accent after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100"
             >
               {link.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="gradient-primary text-accent-foreground px-6 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity"
+            className="gradient-primary text-accent-foreground px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg text-xs lg:text-sm font-bold hover:opacity-90 transition-opacity"
           >
             קביעת פגישה
           </a>
@@ -62,7 +62,7 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden text-hero-foreground"
+          className="md:hidden text-hero-foreground"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -73,7 +73,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-hero/98 backdrop-blur-md border-t border-hero-foreground/10 px-6 pb-6"
+          className="md:hidden bg-hero/98 backdrop-blur-md border-t border-hero-foreground/10 px-6 pb-6"
         >
           {navLinks.map((link) => (
             <a
