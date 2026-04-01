@@ -1,16 +1,32 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import heroImage from "@/assets/hero-classroom.jpg";
 import jotitLogo from "@/assets/jotit-logo.png";
 import classroomOld from "@/assets/classroom-old.jpg";
 import classroomModern from "@/assets/classroom-modern.jpg";
 
+const progressBars = [
+  { title: "נוחות ולמידה עדכנית", value: 95 },
+  { title: "מעקב ובקרה", value: 88 },
+  { title: "שיפור ביצועים ושיפור מוטיבציה אצל התלמידים", value: 82 },
+];
+
 const Hero = () => {
-  const [oldHovered, setOldHovered] = useState(false);
-  const [modernHovered, setModernHovered] = useState(false);
+  const sectionRef = useRef(null);
+  const comparisonRef = useRef(null);
+  const isInView = useInView(comparisonRef, { once: true, margin: "-80px" });
+
+  const { scrollYProgress } = useScroll({
+    target: comparisonRef,
+    offset: ["start end", "center center"],
+  });
+
+  const oldImageOpacity = useTransform(scrollYProgress, [0.2, 0.6], [1, 0]);
+  const barsOpacity = useTransform(scrollYProgress, [0.4, 0.7], [0, 1]);
+  const barsY = useTransform(scrollYProgress, [0.4, 0.7], [40, 0]);
 
   return (
-    <section className="hero-section relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section ref={sectionRef} className="hero-section relative min-h-screen flex items-center overflow-hidden pt-20">
       {/* Background image overlay */}
       <div className="absolute inset-0">
         <img src={heroImage} alt="כיתת לימוד דיגיטלית" className="w-full h-full object-cover opacity-20" />
@@ -68,69 +84,67 @@ const Hero = () => {
         </div>
 
         {/* Split classroom comparison */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
+        <div
+          ref={comparisonRef}
           className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
         >
-          {/* Old classroom */}
-          <div
-            className="relative group cursor-pointer"
-            onMouseEnter={() => setOldHovered(true)}
-            onMouseLeave={() => setOldHovered(false)}
-            onClick={() => setOldHovered(!oldHovered)}
-          >
-            <div className="glass-card rounded-2xl p-2 overflow-hidden">
-              <div className="relative overflow-hidden rounded-xl">
-                <img
-                  src={classroomOld}
-                  alt="כיתה מהעבר"
-                  className={`w-full aspect-video object-cover transition-all duration-700 ${
-                    oldHovered ? "grayscale brightness-75" : "grayscale-0"
-                  }`}
-                  style={oldHovered ? { filter: "grayscale(1) brightness(0.7) sepia(0.2)" } : {}}
-                />
-                {oldHovered && (
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                )}
+          {/* Old classroom — fades out, replaced by progress bars */}
+          <div className="relative min-h-[240px]">
+            <motion.div style={{ opacity: oldImageOpacity }} className="absolute inset-0">
+              <div className="glass-card rounded-2xl p-2 overflow-hidden h-full">
+                <div className="relative overflow-hidden rounded-xl h-full">
+                  <img
+                    src={classroomOld}
+                    alt="כיתה מהעבר"
+                    className="w-full aspect-video object-cover grayscale"
+                  />
+                </div>
               </div>
-            </div>
-            <p className="text-center text-hero-foreground/60 text-sm mt-3 font-medium">
-              כיתה מהעבר
-            </p>
+              <p className="text-center text-hero-foreground/60 text-sm mt-3 font-medium">
+                כיתה מהעבר
+              </p>
+            </motion.div>
+
+            {/* Progress bars that appear */}
+            <motion.div
+              style={{ opacity: barsOpacity, y: barsY }}
+              className="flex flex-col gap-5 justify-center h-full glass-card rounded-2xl p-6"
+            >
+              {progressBars.map((bar, i) => (
+                <div key={i}>
+                  <p className="text-hero-foreground text-sm font-bold mb-2">{bar.title}</p>
+                  <div className="w-full h-3 rounded-full bg-hero-foreground/10 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={isInView ? { width: `${bar.value}%` } : { width: 0 }}
+                      transition={{ duration: 1.2, delay: 0.6 + i * 0.2, ease: "easeInOut" }}
+                      className="h-full rounded-full"
+                      style={{
+                        background: `linear-gradient(90deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)))`,
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
           {/* Modern classroom */}
-          <div
-            className="relative group cursor-pointer"
-            onMouseEnter={() => setModernHovered(true)}
-            onMouseLeave={() => setModernHovered(false)}
-            onClick={() => setModernHovered(!modernHovered)}
-          >
+          <div className="relative group">
             <div className="glass-card rounded-2xl p-2 overflow-hidden">
               <div className="relative overflow-hidden rounded-xl">
-                <motion.img
+                <img
                   src={classroomModern}
                   alt="כיתה של 2025"
-                  className="w-full aspect-video object-cover transition-all duration-700"
-                  style={modernHovered ? {
-                    filter: "saturate(1.3) brightness(1.1)",
-                    boxShadow: "inset 0 0 40px hsl(190 85% 45% / 0.2)"
-                  } : {}}
-                  animate={modernHovered ? { scale: 1.03 } : { scale: 1 }}
-                  transition={{ duration: 0.5 }}
+                  className="w-full aspect-video object-cover"
                 />
-                {modernHovered && (
-                  <div className="absolute inset-0 bg-gradient-to-t from-accent/10 to-transparent pointer-events-none" />
-                )}
               </div>
             </div>
             <p className="text-center text-hero-foreground/60 text-sm mt-3 font-medium">
               כיתה של 2025
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

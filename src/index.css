@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 50% 12%;
 
-    --primary: 220 70% 25%;
+    --primary: 220 75% 30%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 200 60% 94%;
@@ -24,7 +24,7 @@
     --muted: 210 25% 95%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 190 85% 45%;
+    --accent: 190 90% 42%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -40,8 +40,8 @@
     --hero-bg: 220 55% 12%;
     --hero-fg: 210 40% 98%;
     --section-alt: 210 30% 96%;
-    --gradient-start: 220 70% 25%;
-    --gradient-end: 190 85% 45%;
+    --gradient-start: 220 75% 30%;
+    --gradient-end: 190 90% 42%;
     --glow: 190 85% 45%;
 
     --sidebar-background: 0 0% 98%;
@@ -129,4 +129,22 @@
   .section-alt {
     background: hsl(var(--section-alt));
   }
+}
+
+/* Accessibility modes */
+.a11y-high-contrast {
+  filter: contrast(1.4);
+}
+
+.a11y-grayscale {
+  filter: grayscale(1);
+}
+
+.a11y-high-contrast.a11y-grayscale {
+  filter: contrast(1.4) grayscale(1);
+}
+
+.a11y-highlight-links a {
+  outline: 2px solid hsl(190 90% 42%) !important;
+  outline-offset: 2px;
 }

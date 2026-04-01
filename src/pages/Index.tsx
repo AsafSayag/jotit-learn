@@ -9,6 +9,8 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import FinalCTA from "@/components/landing/FinalCTA";
 import ContactForm from "@/components/landing/ContactForm";
 import Footer from "@/components/landing/Footer";
+import AccessibilityWidget from "@/components/AccessibilityWidget";
+import FloatingCharacter from "@/components/FloatingCharacter";
 
 const Index = () => {
   return (
@@ -24,6 +26,8 @@ const Index = () => {
       <FinalCTA />
       <ContactForm />
       <Footer />
+      <AccessibilityWidget />
+      <FloatingCharacter />
     </div>
   );
 };
