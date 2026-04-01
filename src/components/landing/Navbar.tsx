@@ -73,7 +73,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-hero/98 backdrop-blur-md border-t border-hero-foreground/10 px-6 pb-6"
+          className="md:hidden bg-hero/98 backdrop-blur-md border-t border-hero-foreground/10 px-6 pb-6"
         >
           {navLinks.map((link) => (
             <a
