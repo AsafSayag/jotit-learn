@@ -19,8 +19,8 @@ const Hero = () => {
 
   useEffect(() => {
     if (!isInView) return;
-    const t1 = setTimeout(() => setPhase("morphing"), 3800);
-    const t2 = setTimeout(() => setPhase("tablet"), 5400);
+    const t1 = setTimeout(() => setPhase("morphing"), 1800);
+    const t2 = setTimeout(() => setPhase("tablet"), 3400);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [isInView]);
 
