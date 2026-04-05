@@ -1,36 +1,37 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import heroImage from "@/assets/hero-classroom.jpg";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import jotitLogo from "@/assets/jotit-logo.png";
-import classroomOld from "@/assets/classroom-old.jpg";
-import classroomModern from "@/assets/classroom-modern.jpg";
 
-const progressBars = [
-  { title: "נוחות ולמידה עדכנית", value: 95 },
-  { title: "מעקב ובקרה", value: 88 },
-  { title: "שיפור ביצועים ושיפור מוטיבציה אצל התלמידים", value: 82 },
-];
+const particles = Array.from({ length: 18 }, (_, i) => ({
+  id: i,
+  x: Math.random() * 200 - 100,
+  y: Math.random() * 200 - 100,
+  size: Math.random() * 4 + 2,
+  delay: Math.random() * 0.8,
+  duration: 1.2 + Math.random() * 0.8,
+}));
 
 const Hero = () => {
   const sectionRef = useRef(null);
-  const comparisonRef = useRef(null);
-  const isInView = useInView(comparisonRef, { once: true, margin: "-80px" });
+  const animRef = useRef(null);
+  const isInView = useInView(animRef, { once: true, margin: "-40px" });
+  const [phase, setPhase] = useState<"book" | "morphing" | "tablet">("book");
 
-  const { scrollYProgress } = useScroll({
-    target: comparisonRef,
-    offset: ["start end", "center center"],
-  });
-
-  const oldImageOpacity = useTransform(scrollYProgress, [0.2, 0.6], [1, 0]);
-  const barsOpacity = useTransform(scrollYProgress, [0.4, 0.7], [0, 1]);
-  const barsY = useTransform(scrollYProgress, [0.4, 0.7], [40, 0]);
+  useEffect(() => {
+    if (!isInView) return;
+    const t1 = setTimeout(() => setPhase("morphing"), 600);
+    const t2 = setTimeout(() => setPhase("tablet"), 2200);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [isInView]);
 
   return (
-    <section ref={sectionRef} className="hero-section relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background image overlay */}
-      <div className="absolute inset-0">
-        <img src={heroImage} alt="כיתת לימוד דיגיטלית" className="w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0 hero-section" style={{ opacity: 0.85 }} />
+    <section ref={sectionRef} className="hero-section relative min-h-screen flex items-center overflow-hidden pt-20 pb-12">
+      {/* Ambient background glow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full opacity-20 blur-[120px]"
+          style={{ background: "radial-gradient(circle, hsl(var(--glow) / 0.5), transparent 70%)" }}
+        />
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -83,66 +84,158 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Split classroom comparison */}
-        <div
-          ref={comparisonRef}
-          className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
-        >
-          {/* Old classroom — fades out, replaced by progress bars */}
-          <div className="relative min-h-[240px]">
-            <motion.div style={{ opacity: oldImageOpacity }} className="absolute inset-0">
-              <div className="glass-card rounded-2xl p-2 overflow-hidden h-full">
-                <div className="relative overflow-hidden rounded-xl h-full">
-                  <img
-                    src={classroomOld}
-                    alt="כיתה מהעבר"
-                    className="w-full aspect-video object-cover grayscale"
-                  />
-                </div>
-              </div>
-              <p className="text-center text-hero-foreground/60 text-sm mt-3 font-medium">
-                כיתה מהעבר
-              </p>
-            </motion.div>
+        {/* Book → Tablet animation */}
+        <div ref={animRef} className="mt-14 md:mt-20 flex justify-center items-center">
+          <div className="relative w-[220px] h-[280px] sm:w-[260px] sm:h-[340px] md:w-[320px] md:h-[420px]">
+            {/* Particles during morph */}
+            {(phase === "morphing" || phase === "tablet") && particles.map((p) => (
+              <motion.div
+                key={p.id}
+                initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
+                animate={{
+                  opacity: phase === "morphing" ? [0, 1, 0] : 0,
+                  x: p.x,
+                  y: p.y,
+                  scale: phase === "morphing" ? [0, 1.2, 0] : 0,
+                }}
+                transition={{
+                  duration: p.duration,
+                  delay: p.delay,
+                  ease: "easeOut",
+                }}
+                className="absolute top-1/2 left-1/2 rounded-full pointer-events-none"
+                style={{
+                  width: p.size,
+                  height: p.size,
+                  background: `hsl(var(--glow))`,
+                  boxShadow: `0 0 ${p.size * 2}px hsl(var(--glow) / 0.6)`,
+                }}
+              />
+            ))}
 
-            {/* Progress bars that appear */}
+            {/* Glow ring during morph */}
             <motion.div
-              style={{ opacity: barsOpacity, y: barsY }}
-              className="flex flex-col gap-5 justify-center h-full glass-card rounded-2xl p-6"
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{
+                opacity: phase === "morphing" ? 0.4 : phase === "tablet" ? 0.15 : 0,
+                scale: phase === "morphing" ? 1.3 : phase === "tablet" ? 1.1 : 0.6,
+              }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              className="absolute inset-0 rounded-3xl pointer-events-none"
+              style={{
+                background: `radial-gradient(ellipse at center, hsl(var(--glow) / 0.3), transparent 70%)`,
+              }}
+            />
+
+            {/* Book */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, rotateY: 0 }}
+              animate={{
+                opacity: phase === "book" && isInView ? 1 : phase === "morphing" ? 0 : 0,
+                scale: phase === "book" && isInView ? 1 : 0.85,
+                rotateY: phase === "morphing" ? 30 : 0,
+              }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+              className="absolute inset-0 flex items-center justify-center"
+              style={{ perspective: "800px" }}
             >
-              {progressBars.map((bar, i) => (
-                <div key={i}>
-                  <p className="text-hero-foreground text-sm font-bold mb-2">{bar.title}</p>
-                  <div className="w-full h-3 rounded-full bg-hero-foreground/10 overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: `${bar.value}%` } : { width: 0 }}
-                      transition={{ duration: 1.2, delay: 0.6 + i * 0.2, ease: "easeInOut" }}
-                      className="h-full rounded-full"
+              <div
+                className="w-[80%] h-[85%] rounded-lg shadow-2xl flex flex-col items-center justify-center relative overflow-hidden"
+                style={{
+                  background: "linear-gradient(145deg, hsl(30 25% 88%), hsl(30 20% 78%))",
+                  border: "1px solid hsl(30 15% 70%)",
+                }}
+              >
+                {/* Book spine */}
+                <div
+                  className="absolute left-0 top-0 bottom-0 w-3 md:w-4"
+                  style={{ background: "linear-gradient(180deg, hsl(30 30% 65%), hsl(30 25% 55%))" }}
+                />
+                {/* Book lines */}
+                <div className="space-y-3 md:space-y-4 w-[60%] mr-2">
+                  {[75, 90, 60, 85, 50].map((w, i) => (
+                    <div
+                      key={i}
+                      className="h-1.5 md:h-2 rounded-full"
                       style={{
-                        background: `linear-gradient(90deg, hsl(var(--gradient-start)), hsl(var(--gradient-end)))`,
+                        width: `${w}%`,
+                        background: "hsl(30 15% 65% / 0.6)",
                       }}
                     />
-                  </div>
+                  ))}
                 </div>
-              ))}
+                <div
+                  className="mt-6 md:mt-8 text-sm md:text-base font-bold mr-2"
+                  style={{ color: "hsl(30 20% 45%)" }}
+                >
+                  ספר לימוד
+                </div>
+              </div>
             </motion.div>
-          </div>
 
-          {/* Modern classroom */}
-          <div className="relative group">
-            <div className="glass-card rounded-2xl p-2 overflow-hidden">
-              <div className="relative overflow-hidden rounded-xl">
-                <img
-                  src={classroomModern}
-                  alt="כיתה של 2025"
-                  className="w-full aspect-video object-cover"
+            {/* Tablet */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85, rotateY: -30 }}
+              animate={{
+                opacity: phase === "tablet" ? 1 : phase === "morphing" ? 0.3 : 0,
+                scale: phase === "tablet" ? 1 : 0.85,
+                rotateY: phase === "tablet" ? 0 : -30,
+              }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0 flex items-center justify-center"
+              style={{ perspective: "800px" }}
+            >
+              <div
+                className="w-[82%] h-[88%] rounded-2xl md:rounded-3xl flex items-center justify-center relative overflow-hidden"
+                style={{
+                  background: "linear-gradient(145deg, hsl(220 20% 18%), hsl(220 25% 12%))",
+                  border: "2px solid hsl(220 15% 30%)",
+                  boxShadow: phase === "tablet"
+                    ? "0 0 60px hsl(var(--glow) / 0.2), 0 25px 50px hsl(220 50% 5% / 0.5), inset 0 1px 0 hsl(220 15% 35%)"
+                    : "none",
+                }}
+              >
+                {/* Screen area */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: phase === "tablet" ? 1 : 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="w-[88%] h-[90%] rounded-lg md:rounded-xl flex items-center justify-center relative overflow-hidden"
+                  style={{
+                    background: "linear-gradient(160deg, hsl(220 55% 12%), hsl(220 60% 18%))",
+                    boxShadow: "inset 0 0 30px hsl(var(--glow) / 0.08)",
+                  }}
+                >
+                  {/* Screen glow */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: "radial-gradient(ellipse at 40% 30%, hsl(var(--glow) / 0.12), transparent 60%)",
+                    }}
+                  />
+                  {/* Logo on screen */}
+                  <motion.img
+                    src={jotitLogo}
+                    alt="JOTIT"
+                    className="w-[55%] md:w-[50%] h-auto relative z-10"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{
+                      opacity: phase === "tablet" ? 1 : 0,
+                      scale: phase === "tablet" ? 1 : 0.8,
+                    }}
+                    transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+                    style={{
+                      filter: phase === "tablet" ? "drop-shadow(0 0 16px hsl(var(--glow) / 0.5))" : "none",
+                    }}
+                  />
+                </motion.div>
+                {/* Camera dot */}
+                <div
+                  className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full"
+                  style={{ background: "hsl(220 15% 30%)" }}
                 />
               </div>
-            </div>
-            <p className="text-center text-hero-foreground/60 text-sm mt-3 font-medium">
-              כיתה של 2025
-            </p>
+            </motion.div>
           </div>
         </div>
       </div>
