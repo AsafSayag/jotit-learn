@@ -19,8 +19,8 @@ const Hero = () => {
 
   useEffect(() => {
     if (!isInView) return;
-    const t1 = setTimeout(() => setPhase("morphing"), 600);
-    const t2 = setTimeout(() => setPhase("tablet"), 2200);
+    const t1 = setTimeout(() => setPhase("morphing"), 1800);
+    const t2 = setTimeout(() => setPhase("tablet"), 3400);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [isInView]);
 
@@ -129,46 +129,67 @@ const Hero = () => {
 
             {/* Book */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotateY: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{
-                opacity: phase === "book" && isInView ? 1 : phase === "morphing" ? 0 : 0,
+                opacity: phase === "book" && isInView ? 1 : 0,
                 scale: phase === "book" && isInView ? 1 : 0.85,
-                rotateY: phase === "morphing" ? 30 : 0,
+                rotateY: phase === "morphing" ? 40 : 0,
               }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              transition={{ duration: 0.9, ease: "easeInOut" }}
               className="absolute inset-0 flex items-center justify-center"
-              style={{ perspective: "800px" }}
+              style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
             >
               <div
-                className="w-[80%] h-[85%] rounded-lg shadow-2xl flex flex-col items-center justify-center relative overflow-hidden"
+                className="w-[80%] h-[85%] rounded-sm shadow-2xl relative overflow-hidden"
                 style={{
-                  background: "linear-gradient(145deg, hsl(30 25% 88%), hsl(30 20% 78%))",
-                  border: "1px solid hsl(30 15% 70%)",
+                  background: "linear-gradient(160deg, hsl(25 35% 32%), hsl(20 40% 24%))",
+                  border: "2px solid hsl(25 30% 20%)",
+                  boxShadow: "6px 6px 20px hsl(220 50% 5% / 0.5), inset 0 1px 0 hsl(25 30% 45%)",
                 }}
               >
-                {/* Book spine */}
+                {/* Book spine shadow */}
                 <div
-                  className="absolute left-0 top-0 bottom-0 w-3 md:w-4"
-                  style={{ background: "linear-gradient(180deg, hsl(30 30% 65%), hsl(30 25% 55%))" }}
+                  className="absolute right-0 top-0 bottom-0 w-4 md:w-5"
+                  style={{ background: "linear-gradient(90deg, transparent, hsl(25 35% 18% / 0.5))" }}
                 />
-                {/* Book lines */}
-                <div className="space-y-3 md:space-y-4 w-[60%] mr-2">
-                  {[75, 90, 60, 85, 50].map((w, i) => (
-                    <div
-                      key={i}
-                      className="h-1.5 md:h-2 rounded-full"
-                      style={{
-                        width: `${w}%`,
-                        background: "hsl(30 15% 65% / 0.6)",
-                      }}
-                    />
+                {/* Page edges visible on the left */}
+                <div className="absolute left-0 top-2 bottom-2 w-2 md:w-3 flex flex-col gap-[1px]">
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <div key={i} className="flex-1" style={{ background: "hsl(40 30% 90%)" }} />
                   ))}
                 </div>
-                <div
-                  className="mt-6 md:mt-8 text-sm md:text-base font-bold mr-2"
-                  style={{ color: "hsl(30 20% 45%)" }}
-                >
-                  ספר לימוד
+
+                {/* Cover content */}
+                <div className="flex flex-col items-center justify-center h-full px-6 py-4 mr-2">
+                  {/* Decorative top line */}
+                  <div className="w-[50%] h-[2px] rounded-full mb-4 md:mb-6" style={{ background: "hsl(35 50% 60%)" }} />
+                  
+                  {/* Title */}
+                  <div className="text-center space-y-1 md:space-y-2">
+                    <div className="text-base md:text-xl lg:text-2xl font-black" style={{ color: "hsl(40 50% 80%)" }}>
+                      📖
+                    </div>
+                    <div className="text-base md:text-xl lg:text-2xl font-black" style={{ color: "hsl(40 50% 80%)" }}>
+                      ספר לימוד
+                    </div>
+                    <div className="text-[10px] md:text-xs font-medium" style={{ color: "hsl(35 30% 60%)" }}>
+                      מהדורה ישנה
+                    </div>
+                  </div>
+
+                  {/* Decorative bottom line */}
+                  <div className="w-[50%] h-[2px] rounded-full mt-4 md:mt-6" style={{ background: "hsl(35 50% 60%)" }} />
+
+                  {/* Decorative bottom element */}
+                  <div className="mt-4 md:mt-6 space-y-2 w-[65%]">
+                    {[80, 60, 70].map((w, i) => (
+                      <div
+                        key={i}
+                        className="h-1 md:h-1.5 rounded-full mx-auto"
+                        style={{ width: `${w}%`, background: "hsl(35 25% 50% / 0.4)" }}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>
