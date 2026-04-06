@@ -27,8 +27,7 @@ const VideoSection = () => {
             <video
               className="w-full h-full object-cover"
               src="/videos/JOTIT.mp4"
-              autoPlay
-              muted
+              controls
               loop
               playsInline
               preload="metadata"
