@@ -1,14 +1,36 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Send } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactForm = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const { error } = await supabase.from("contact_submissions").insert({
+      full_name: formData.get("full_name") as string,
+      role: (formData.get("role") as string) || null,
+      school: (formData.get("school") as string) || null,
+      phone: formData.get("phone") as string,
+      email: formData.get("email") as string,
+      message: (formData.get("message") as string) || null,
+    });
+
+    setLoading(false);
+    if (error) {
+      toast({ title: "שגיאה", description: "אירעה שגיאה, נסו שוב מאוחר יותר", variant: "destructive" });
+      return;
+    }
     setSubmitted(true);
   };
 
