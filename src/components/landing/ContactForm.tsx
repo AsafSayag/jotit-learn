@@ -67,6 +67,7 @@ const ContactForm = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">שם מלא</label>
                   <input
                     type="text"
+                    name="full_name"
                     required
                     className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition"
                     placeholder="ישראל ישראלי"
@@ -76,6 +77,7 @@ const ContactForm = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">תפקיד</label>
                   <input
                     type="text"
+                    name="role"
                     className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition"
                     placeholder="מנהל / מורה / רכז"
                   />
@@ -86,6 +88,7 @@ const ContactForm = () => {
                 <label className="block text-sm font-medium text-foreground mb-2">בית ספר</label>
                 <input
                   type="text"
+                  name="school"
                   className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition"
                   placeholder="שם בית הספר"
                 />
@@ -96,6 +99,7 @@ const ContactForm = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">טלפון</label>
                   <input
                     type="tel"
+                    name="phone"
                     required
                     className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition"
                     placeholder="050-1234567"
@@ -105,6 +109,7 @@ const ContactForm = () => {
                   <label className="block text-sm font-medium text-foreground mb-2">אימייל</label>
                   <input
                     type="email"
+                    name="email"
                     required
                     className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition"
                     placeholder="email@school.co.il"
@@ -115,6 +120,7 @@ const ContactForm = () => {
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">הודעה</label>
                 <textarea
+                  name="message"
                   rows={4}
                   className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition resize-none"
                   placeholder="ספרו לנו על בית הספר שלכם..."
