@@ -71,13 +71,13 @@ const Hero = () => {
           >
             <a
               href="#video"
-              className="gradient-primary text-accent-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:scale-105 transform"
+              className="bg-[hsl(210,85%,40%)] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[hsl(210,85%,33%)] hover:shadow-lg transition-all hover:scale-105 transform"
             >
               צפו איך זה עובד
             </a>
             <a
               href="#contact"
-              className="gradient-primary text-accent-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 hover:shadow-lg transition-all hover:scale-105 transform"
+              className="bg-[hsl(210,85%,40%)] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[hsl(210,85%,33%)] hover:shadow-lg transition-all hover:scale-105 transform"
             >
               רוצים לדעת עוד?
             </a>

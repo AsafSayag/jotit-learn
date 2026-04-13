@@ -53,7 +53,7 @@ const Navbar = () => {
           ))}
           <a
             href="#contact"
-            className="gradient-primary text-accent-foreground px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg text-xs lg:text-sm font-bold hover:opacity-90 transition-opacity"
+            className="bg-[hsl(210,85%,40%)] text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg text-xs lg:text-sm font-bold hover:bg-[hsl(210,85%,33%)] hover:shadow-md transition-all"
           >
             קביעת פגישה
           </a>
@@ -88,7 +88,7 @@ const Navbar = () => {
           <a
             href="#contact"
             onClick={() => setMobileOpen(false)}
-            className="block mt-3 gradient-primary text-accent-foreground px-6 py-3 rounded-lg text-center font-bold"
+            className="block mt-3 bg-[hsl(210,85%,40%)] text-white px-6 py-3 rounded-lg text-center font-bold hover:bg-[hsl(210,85%,33%)]"
           >
             קביעת פגישה
           </a>
