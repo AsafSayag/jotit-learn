@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { Brain } from "lucide-react";
 import jotitLogo from "@/assets/jotit-logo.png";
 
 const particles = Array.from({ length: 18 }, (_, i) => ({
@@ -10,6 +11,19 @@ const particles = Array.from({ length: 18 }, (_, i) => ({
   delay: Math.random() * 0.8,
   duration: 1.2 + Math.random() * 0.8,
 }));
+
+const GoogleClassroomIcon = () => (
+  <svg viewBox="0 0 48 48" className="w-8 h-8 md:w-10 md:h-10">
+    <rect width="48" height="48" rx="8" fill="#0F9D58" />
+    <rect x="6" y="10" width="36" height="28" rx="3" fill="#57BB8A" />
+    <circle cx="24" cy="21" r="4" fill="#F4F4F4" />
+    <path d="M16 31c0-3.3 3.6-6 8-6s8 2.7 8 6" fill="#F4F4F4" />
+    <circle cx="33" cy="20" r="2.5" fill="#F4F4F4" />
+    <path d="M29 28c1.2-0.8 2.8-1.3 4.5-1.3 1.2 0 2.3 0.2 3.3 0.7" stroke="#F4F4F4" strokeWidth="1.5" fill="none" />
+    <circle cx="15" cy="20" r="2.5" fill="#F4F4F4" />
+    <path d="M19 28c-1.2-0.8-2.8-1.3-4.5-1.3-1.2 0-2.3 0.2-3.3 0.7" stroke="#F4F4F4" strokeWidth="1.5" fill="none" />
+  </svg>
+);
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -35,7 +49,7 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center relative">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -45,11 +59,35 @@ const Hero = () => {
             <img src={jotitLogo} alt="JOTIT" className="h-16 md:h-20 w-auto glow-effect" />
           </motion.div>
 
+          {/* Google Classroom icon - right side, between logo and headline */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="absolute -right-4 md:-right-16 lg:-right-28 top-4 md:top-6 flex flex-col items-center gap-1"
+          >
+            <GoogleClassroomIcon />
+            <span className="text-[10px] md:text-xs text-hero-foreground/60 font-medium">Google Classroom</span>
+          </motion.div>
+
+          {/* AI icon - left side, between headline and subheading */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="absolute -left-4 md:-left-16 lg:-left-28 top-[45%] md:top-[40%] flex flex-col items-center gap-1"
+          >
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-[#1B3A5C] flex items-center justify-center">
+              <Brain className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            </div>
+            <span className="text-[10px] md:text-xs text-hero-foreground/60 font-medium">AI</span>
+          </motion.div>
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold font-display text-hero-foreground leading-tight mb-6 tracking-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold font-rubik text-hero-foreground leading-tight mb-6 tracking-tight"
           >
             מערכת לימוד דיגיטלית מבוססת AI בשילוב כתב יד
           </motion.h1>
@@ -60,7 +98,7 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-lg md:text-xl text-hero-foreground/65 mb-10 leading-relaxed max-w-2xl mx-auto"
           >
-            מערכת חכמה לניהול לימודים מלא דרך הטאבלט — סדר, שליטה ושיפור ביצועים בבתי ספר
+            המערכת המתקדמת ביותר ללמידה דיגיטלית - סדר, שליטה, ולמידה אפקטיבית ואישית לכל תלמיד
           </motion.p>
 
           <motion.div
@@ -71,13 +109,13 @@ const Hero = () => {
           >
             <a
               href="#video"
-              className="bg-[hsl(210,85%,40%)] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[hsl(210,85%,33%)] hover:shadow-lg transition-all hover:scale-105 transform"
+              className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors"
             >
               צפו איך זה עובד
             </a>
             <a
               href="#contact"
-              className="bg-[hsl(210,85%,40%)] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[hsl(210,85%,33%)] hover:shadow-lg transition-all hover:scale-105 transform"
+              className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors"
             >
               רוצים לדעת עוד?
             </a>
@@ -147,47 +185,26 @@ const Hero = () => {
                   boxShadow: "6px 6px 20px hsl(220 50% 5% / 0.5), inset 0 1px 0 hsl(25 30% 45%)",
                 }}
               >
-                {/* Book spine shadow */}
                 <div
                   className="absolute right-0 top-0 bottom-0 w-4 md:w-5"
                   style={{ background: "linear-gradient(90deg, transparent, hsl(25 35% 18% / 0.5))" }}
                 />
-                {/* Page edges visible on the left */}
                 <div className="absolute left-0 top-2 bottom-2 w-2 md:w-3 flex flex-col gap-[1px]">
                   {Array.from({ length: 12 }).map((_, i) => (
                     <div key={i} className="flex-1" style={{ background: "hsl(40 30% 90%)" }} />
                   ))}
                 </div>
-
-                {/* Cover content */}
                 <div className="flex flex-col items-center justify-center h-full px-6 py-4 mr-2">
-                  {/* Decorative top line */}
                   <div className="w-[50%] h-[2px] rounded-full mb-4 md:mb-6" style={{ background: "hsl(35 50% 60%)" }} />
-                  
-                  {/* Title */}
                   <div className="text-center space-y-1 md:space-y-2">
-                    <div className="text-base md:text-xl lg:text-2xl font-black" style={{ color: "hsl(40 50% 80%)" }}>
-                      📖
-                    </div>
-                    <div className="text-base md:text-xl lg:text-2xl font-black" style={{ color: "hsl(40 50% 80%)" }}>
-                      ספר לימוד
-                    </div>
-                    <div className="text-[10px] md:text-xs font-medium" style={{ color: "hsl(35 30% 60%)" }}>
-                      מהדורה ישנה
-                    </div>
+                    <div className="text-base md:text-xl lg:text-2xl font-black" style={{ color: "hsl(40 50% 80%)" }}>📖</div>
+                    <div className="text-base md:text-xl lg:text-2xl font-black" style={{ color: "hsl(40 50% 80%)" }}>ספר לימוד</div>
+                    <div className="text-[10px] md:text-xs font-medium" style={{ color: "hsl(35 30% 60%)" }}>מהדורה ישנה</div>
                   </div>
-
-                  {/* Decorative bottom line */}
                   <div className="w-[50%] h-[2px] rounded-full mt-4 md:mt-6" style={{ background: "hsl(35 50% 60%)" }} />
-
-                  {/* Decorative bottom element */}
                   <div className="mt-4 md:mt-6 space-y-2 w-[65%]">
                     {[80, 60, 70].map((w, i) => (
-                      <div
-                        key={i}
-                        className="h-1 md:h-1.5 rounded-full mx-auto"
-                        style={{ width: `${w}%`, background: "hsl(35 25% 50% / 0.4)" }}
-                      />
+                      <div key={i} className="h-1 md:h-1.5 rounded-full mx-auto" style={{ width: `${w}%`, background: "hsl(35 25% 50% / 0.4)" }} />
                     ))}
                   </div>
                 </div>
@@ -216,7 +233,6 @@ const Hero = () => {
                     : "none",
                 }}
               >
-                {/* Screen area */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: phase === "tablet" ? 1 : 0 }}
@@ -227,14 +243,12 @@ const Hero = () => {
                     boxShadow: "inset 0 0 30px hsl(var(--glow) / 0.08)",
                   }}
                 >
-                  {/* Screen glow */}
                   <div
                     className="absolute inset-0 pointer-events-none"
                     style={{
                       background: "radial-gradient(ellipse at 40% 30%, hsl(var(--glow) / 0.12), transparent 60%)",
                     }}
                   />
-                  {/* Logo on screen */}
                   <motion.img
                     src={jotitLogo}
                     alt="JOTIT"
@@ -250,7 +264,6 @@ const Hero = () => {
                     }}
                   />
                 </motion.div>
-                {/* Camera dot */}
                 <div
                   className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full"
                   style={{ background: "hsl(220 15% 30%)" }}
