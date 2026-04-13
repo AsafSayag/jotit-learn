@@ -35,7 +35,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-24 section-alt" ref={ref}>
+    <section id="contact" className="py-24 section-pastel-cream" ref={ref}>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -53,7 +53,7 @@ const ContactForm = () => {
           className="max-w-2xl mx-auto"
         >
           {submitted ? (
-            <div className="bg-card rounded-2xl border border-border p-12 text-center">
+            <div className="bg-card rounded-2xl border border-border p-12 text-center card-soft">
               <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center mx-auto mb-6">
                 <Send className="w-8 h-8 text-accent-foreground" />
               </div>
@@ -61,7 +61,7 @@ const ContactForm = () => {
               <p className="text-muted-foreground">קיבלנו את הפרטים שלכם ונחזור אליכם בהקדם</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-card rounded-2xl border border-border p-8 md:p-12 space-y-5">
+            <form onSubmit={handleSubmit} className="bg-card rounded-2xl border border-border p-8 md:p-12 space-y-5 card-soft">
               <div className="grid md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">שם מלא</label>
