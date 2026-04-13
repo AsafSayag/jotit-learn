@@ -51,7 +51,7 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold font-display text-hero-foreground leading-tight mb-6 tracking-tight"
           >
-            העתיד של הלמידה כבר כאן
+            מערכת לימוד דיגיטלית מבוססת AI בשילוב כתב יד
           </motion.h1>
 
           <motion.p
