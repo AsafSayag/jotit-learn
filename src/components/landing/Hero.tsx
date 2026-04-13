@@ -49,7 +49,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-hero-foreground leading-tight mb-6"
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold font-display text-hero-foreground leading-tight mb-6 tracking-tight"
           >
             העתיד של הלמידה כבר כאן
           </motion.h1>
@@ -77,7 +77,7 @@ const Hero = () => {
             </a>
             <a
               href="#contact"
-              className="border-2 border-foreground/20 text-hero-foreground px-8 py-4 rounded-xl text-lg font-bold hover:bg-foreground/5 transition-all"
+              className="gradient-primary text-accent-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 hover:shadow-lg transition-all hover:scale-105 transform"
             >
               רוצים לדעת עוד?
             </a>
