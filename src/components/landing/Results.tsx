@@ -1,12 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { TrendingUp, ClipboardCheck, Award, Eye, Zap } from "lucide-react";
+import { ClipboardCheck, Eye, Zap } from "lucide-react";
 
 const stats = [
-  { icon: TrendingUp, value: 40, suffix: "%", label: "שיפור בביצועים לימודיים" },
   { icon: ClipboardCheck, value: 65, suffix: "%", label: "עלייה בהגשת שיעורי בית" },
-  { icon: Award, value: 30, suffix: "%", label: "שיפור בציוני מבחנים" },
-  { icon: Eye, value: 90, suffix: "%", label: "מורים מדווחים על מעקב קל" },
+  { icon: Eye, value: 70, suffix: "%", label: "מורים מדווחים על מעקב קל" },
   { icon: Zap, value: 85, suffix: "%", label: "עלייה במוטיבציה של תלמידים" },
 ];
 
@@ -49,7 +47,7 @@ const Results = () => {
           התוצאות מדברות בעד עצמן
         </motion.h2>
 
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {stats.map((stat, i) => (
             <motion.div
               key={i}

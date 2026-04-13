@@ -37,13 +37,13 @@ const FinalCTA = () => {
         >
           <a
             href="#contact"
-            className="bg-[hsl(210,85%,40%)] text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-[hsl(210,85%,33%)] hover:shadow-lg transition-all hover:scale-105 transform"
+            className="bg-[#1B3A5C] text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors"
           >
             קביעת פגישה
           </a>
           <a
             href="#contact"
-            className="bg-[hsl(210,85%,40%)] text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-[hsl(210,85%,33%)] hover:shadow-lg transition-all hover:scale-105 transform"
+            className="bg-[#1B3A5C] text-white px-10 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors"
           >
             השאירו פרטים
           </a>

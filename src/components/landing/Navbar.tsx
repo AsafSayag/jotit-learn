@@ -31,7 +31,6 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4 lg:px-8">
-        {/* Logo */}
         <motion.a
           href="#"
           whileHover={{ scale: 1.03, filter: "drop-shadow(0 0 12px hsl(190 85% 45% / 0.5))" }}
@@ -40,7 +39,6 @@ const Navbar = () => {
           <img src={jotitLogo} alt="JOTIT" className="h-10 w-auto" />
         </motion.a>
 
-        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-4 lg:gap-8">
           {navLinks.map((link) => (
             <a
@@ -53,22 +51,17 @@ const Navbar = () => {
           ))}
           <a
             href="#contact"
-            className="bg-[hsl(210,85%,40%)] text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg text-xs lg:text-sm font-bold hover:bg-[hsl(210,85%,33%)] hover:shadow-md transition-all"
+            className="bg-[#1B3A5C] text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg text-xs lg:text-sm font-bold hover:bg-[#152E4A] transition-colors"
           >
             קביעת פגישה
           </a>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-hero-foreground"
-        >
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-hero-foreground">
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -88,7 +81,7 @@ const Navbar = () => {
           <a
             href="#contact"
             onClick={() => setMobileOpen(false)}
-            className="block mt-3 bg-[hsl(210,85%,40%)] text-white px-6 py-3 rounded-lg text-center font-bold hover:bg-[hsl(210,85%,33%)]"
+            className="block mt-3 bg-[#1B3A5C] text-white px-6 py-3 rounded-lg text-center font-bold hover:bg-[#152E4A]"
           >
             קביעת פגישה
           </a>

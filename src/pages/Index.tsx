@@ -10,15 +10,14 @@ import FinalCTA from "@/components/landing/FinalCTA";
 import ContactForm from "@/components/landing/ContactForm";
 import Footer from "@/components/landing/Footer";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
-import FloatingCharacter from "@/components/FloatingCharacter";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
       <Hero />
-      <Problems />
       <Solution />
+      <Problems />
       <VideoSection />
       <Results />
       <GlobalTrust />
@@ -27,7 +26,6 @@ const Index = () => {
       <ContactForm />
       <Footer />
       <AccessibilityWidget />
-      <FloatingCharacter />
     </div>
   );
 };
