@@ -13,28 +13,6 @@ const particles = Array.from({ length: 18 }, (_, i) => ({
   duration: 1.2 + Math.random() * 0.8,
 }));
 
-const floatAnimation = {
-  y: [0, -6, 0],
-  transition: {
-    duration: 3,
-    repeat: Infinity,
-    ease: "easeInOut",
-  },
-};
-
-const glowAnimation = {
-  filter: [
-    "drop-shadow(0 0 4px hsl(190 85% 45% / 0.2))",
-    "drop-shadow(0 0 12px hsl(190 85% 45% / 0.5))",
-    "drop-shadow(0 0 4px hsl(190 85% 45% / 0.2))",
-  ],
-  transition: {
-    duration: 2.5,
-    repeat: Infinity,
-    ease: "easeInOut",
-  },
-};
-
 const GoogleClassroomIcon = () => (
   <svg viewBox="0 0 48 48" className="w-12 h-12 md:w-16 md:h-16">
     <rect width="48" height="48" rx="8" fill="#0F9D58" />
@@ -48,6 +26,25 @@ const GoogleClassroomIcon = () => (
   </svg>
 );
 
+const IconFloat = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
+  <motion.div
+    animate={{
+      y: [0, -6, 0],
+      filter: [
+        "drop-shadow(0 0 4px hsl(190 85% 45% / 0.2))",
+        "drop-shadow(0 0 14px hsl(190 85% 45% / 0.5))",
+        "drop-shadow(0 0 4px hsl(190 85% 45% / 0.2))",
+      ],
+    }}
+    transition={{
+      y: { duration: 3, repeat: Infinity, ease: "easeInOut" as const, delay },
+      filter: { duration: 2.5, repeat: Infinity, ease: "easeInOut" as const, delay },
+    }}
+  >
+    {children}
+  </motion.div>
+);
+
 const Hero = () => {
   const sectionRef = useRef(null);
   const animRef = useRef(null);
@@ -56,7 +53,6 @@ const Hero = () => {
 
   useEffect(() => {
     if (!isInView) return;
-    // Reduced delay: book shows for ~3.8s then morphs, tablet appears 1s later
     const t1 = setTimeout(() => setPhase("morphing"), 3800);
     const t2 = setTimeout(() => setPhase("tablet"), 4800);
     return () => { clearTimeout(t1); clearTimeout(t2); };
@@ -64,7 +60,6 @@ const Hero = () => {
 
   return (
     <section ref={sectionRef} className="hero-section relative min-h-screen flex items-center overflow-hidden pt-20 pb-12">
-      {/* Ambient background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full opacity-10 blur-[120px]"
@@ -83,52 +78,31 @@ const Hero = () => {
             <img src={jotitLogo} alt="JOTIT" className="h-16 md:h-20 w-auto glow-effect" />
           </motion.div>
 
-          {/* Google Classroom icon - right side, between logo and headline */}
+          {/* Google Classroom icon - right side */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              ...floatAnimation,
-            }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
             className="absolute -right-4 md:-right-20 lg:-right-32 top-4 md:top-6 flex flex-col items-center gap-1.5"
           >
-            <motion.div animate={glowAnimation}>
+            <IconFloat>
               <GoogleClassroomIcon />
-            </motion.div>
+            </IconFloat>
             <span className="text-[10px] md:text-xs text-hero-foreground/60 font-medium">Google Classroom</span>
           </motion.div>
 
-          {/* AI icon - left side, between headline and subheading */}
+          {/* AI icon - left side */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              ...floatAnimation,
-            }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
             className="absolute -left-4 md:-left-20 lg:-left-32 top-[45%] md:top-[40%] flex flex-col items-center gap-1.5"
           >
-            <motion.div
-              animate={{
-                filter: [
-                  "drop-shadow(0 0 4px hsl(210 85% 40% / 0.2))",
-                  "drop-shadow(0 0 12px hsl(210 85% 40% / 0.5))",
-                  "drop-shadow(0 0 4px hsl(210 85% 40% / 0.2))",
-                ],
-                transition: {
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
-              }}
-            >
+            <IconFloat delay={0.5}>
               <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-[#1B3A5C] flex items-center justify-center">
                 <Brain className="w-7 h-7 md:w-9 md:h-9 text-white" />
               </div>
-            </motion.div>
+            </IconFloat>
             <span className="text-[10px] md:text-xs text-hero-foreground/60 font-medium">AI</span>
           </motion.div>
 
@@ -156,16 +130,10 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.7 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <a
-              href="#video"
-              className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors"
-            >
+            <a href="#video" className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors">
               צפו איך זה עובד
             </a>
-            <a
-              href="#contact"
-              className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors"
-            >
+            <a href="#contact" className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors">
               רוצים לדעת עוד?
             </a>
           </motion.div>
@@ -174,7 +142,6 @@ const Hero = () => {
         {/* Book → Tablet animation */}
         <div ref={animRef} className="mt-14 md:mt-20 flex justify-center items-center">
           <div className="relative w-[280px] h-[200px] sm:w-[360px] sm:h-[260px] md:w-[480px] md:h-[340px]">
-            {/* Particles during morph */}
             {(phase === "morphing" || phase === "tablet") && particles.map((p) => (
               <motion.div
                 key={p.id}
@@ -185,11 +152,7 @@ const Hero = () => {
                   y: p.y,
                   scale: phase === "morphing" ? [0, 1.2, 0] : 0,
                 }}
-                transition={{
-                  duration: p.duration,
-                  delay: p.delay,
-                  ease: "easeOut",
-                }}
+                transition={{ duration: p.duration, delay: p.delay, ease: "easeOut" }}
                 className="absolute top-1/2 left-1/2 rounded-full pointer-events-none"
                 style={{
                   width: p.size,
@@ -200,7 +163,6 @@ const Hero = () => {
               />
             ))}
 
-            {/* Glow ring during morph */}
             <motion.div
               initial={{ opacity: 0, scale: 0.6 }}
               animate={{
@@ -209,9 +171,7 @@ const Hero = () => {
               }}
               transition={{ duration: 1.2, ease: "easeInOut" }}
               className="absolute inset-0 rounded-3xl pointer-events-none"
-              style={{
-                background: `radial-gradient(ellipse at center, hsl(var(--glow) / 0.3), transparent 70%)`,
-              }}
+              style={{ background: `radial-gradient(ellipse at center, hsl(var(--glow) / 0.3), transparent 70%)` }}
             />
 
             {/* Book */}
@@ -227,40 +187,32 @@ const Hero = () => {
               style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
             >
               <div
-                className="w-[55%] h-[90%] rounded-sm shadow-2xl relative overflow-hidden"
+                className="w-[45%] h-[90%] rounded-sm shadow-2xl relative overflow-hidden"
                 style={{
                   background: "linear-gradient(160deg, hsl(25 35% 32%), hsl(20 40% 24%))",
                   border: "2px solid hsl(25 30% 20%)",
                   boxShadow: "6px 6px 20px hsl(220 50% 5% / 0.5), inset 0 1px 0 hsl(25 30% 45%)",
                 }}
               >
-                <div
-                  className="absolute right-0 top-0 bottom-0 w-4 md:w-5"
-                  style={{ background: "linear-gradient(90deg, transparent, hsl(25 35% 18% / 0.5))" }}
-                />
+                <div className="absolute right-0 top-0 bottom-0 w-4 md:w-5" style={{ background: "linear-gradient(90deg, transparent, hsl(25 35% 18% / 0.5))" }} />
                 <div className="absolute left-0 top-2 bottom-2 w-2 md:w-3 flex flex-col gap-[1px]">
                   {Array.from({ length: 12 }).map((_, i) => (
                     <div key={i} className="flex-1" style={{ background: "hsl(40 30% 90%)" }} />
                   ))}
                 </div>
-                <div className="flex flex-col items-center justify-center h-full px-6 py-4 mr-2">
-                  <div className="w-[50%] h-[2px] rounded-full mb-4 md:mb-6" style={{ background: "hsl(35 50% 60%)" }} />
+                <div className="flex flex-col items-center justify-center h-full px-4 py-4 mr-2">
+                  <div className="w-[50%] h-[2px] rounded-full mb-3 md:mb-5" style={{ background: "hsl(35 50% 60%)" }} />
                   <div className="text-center space-y-1 md:space-y-2">
-                    <div className="text-base md:text-xl lg:text-2xl font-black" style={{ color: "hsl(40 50% 80%)" }}>📖</div>
-                    <div className="text-base md:text-xl lg:text-2xl font-black" style={{ color: "hsl(40 50% 80%)" }}>ספר לימוד</div>
-                    <div className="text-[10px] md:text-xs font-medium" style={{ color: "hsl(35 30% 60%)" }}>מהדורה ישנה</div>
+                    <div className="text-base md:text-xl font-black" style={{ color: "hsl(40 50% 80%)" }}>📖</div>
+                    <div className="text-sm md:text-lg font-black" style={{ color: "hsl(40 50% 80%)" }}>ספר לימוד</div>
+                    <div className="text-[9px] md:text-xs font-medium" style={{ color: "hsl(35 30% 60%)" }}>מהדורה ישנה</div>
                   </div>
-                  <div className="w-[50%] h-[2px] rounded-full mt-4 md:mt-6" style={{ background: "hsl(35 50% 60%)" }} />
-                  <div className="mt-4 md:mt-6 space-y-2 w-[65%]">
-                    {[80, 60, 70].map((w, i) => (
-                      <div key={i} className="h-1 md:h-1.5 rounded-full mx-auto" style={{ width: `${w}%`, background: "hsl(35 25% 50% / 0.4)" }} />
-                    ))}
-                  </div>
+                  <div className="w-[50%] h-[2px] rounded-full mt-3 md:mt-5" style={{ background: "hsl(35 50% 60%)" }} />
                 </div>
               </div>
             </motion.div>
 
-            {/* Tablet - replaced with uploaded image */}
+            {/* Tablet - uploaded image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.85, rotateY: -30 }}
               animate={{
