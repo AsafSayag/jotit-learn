@@ -8,9 +8,9 @@ const Footer = () => {
 
   return (
     <footer className="relative overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--hero-bg))] via-[hsl(220,60%,16%)] to-[hsl(var(--gradient-start))]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--glow)/0.08),transparent_60%)]" />
+      {/* Gradient background - light */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(210,35%,95%)] via-[hsl(210,30%,97%)] to-[hsl(200,40%,96%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--glow)/0.06),transparent_60%)]" />
 
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--accent))] to-transparent opacity-40" />
@@ -21,7 +21,7 @@ const Footer = () => {
           {/* Logo & tagline */}
           <div className="flex flex-col items-center md:items-start gap-3">
             <img src={jotitLogo} alt="JOTIT" className="h-11 w-auto" />
-            <p className="text-sm text-[hsl(var(--hero-fg)/0.5)] max-w-[200px] text-center md:text-right">
+            <p className="text-sm text-muted-foreground max-w-[200px] text-center md:text-right">
               הפלטפורמה החכמה לניהול כיתות
             </p>
           </div>
@@ -36,7 +36,7 @@ const Footer = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-[hsl(var(--hero-fg)/0.55)] hover:text-[hsl(var(--accent))] transition-colors duration-200"
+                className="text-muted-foreground hover:text-accent transition-colors duration-200"
               >
                 {link.label}
               </a>
@@ -47,14 +47,14 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-end gap-3">
             <a
               href="tel:+972525603424"
-              className="flex items-center gap-2 text-sm text-[hsl(var(--hero-fg)/0.55)] hover:text-[hsl(var(--accent))] transition-colors duration-200"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-accent transition-colors duration-200"
             >
               <Phone className="w-4 h-4" />
               <span dir="ltr">+972 52-560-3424</span>
             </a>
             <a
               href="mailto:1@tbook.co.il"
-              className="flex items-center gap-2 text-sm text-[hsl(var(--hero-fg)/0.55)] hover:text-[hsl(var(--accent))] transition-colors duration-200"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-accent transition-colors duration-200"
             >
               <Mail className="w-4 h-4" />
               1@tbook.co.il
@@ -63,16 +63,16 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-[hsl(var(--hero-fg)/0.12)] to-transparent mb-6" />
+        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-6" />
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[hsl(var(--hero-fg)/0.35)]">
+          <p className="text-xs text-muted-foreground/60">
             © 2026 JOTIT. כל הזכויות שמורות.
           </p>
           <button
             onClick={scrollToTop}
-            className="group flex items-center gap-1.5 text-xs text-[hsl(var(--hero-fg)/0.4)] hover:text-[hsl(var(--accent))] transition-colors duration-200"
+            className="group flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors duration-200"
             aria-label="חזרה למעלה"
           >
             <ChevronUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform duration-200" />
