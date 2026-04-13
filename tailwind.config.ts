@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         heebo: ["Heebo", "sans-serif"],
         display: ["'Plus Jakarta Sans'", "Heebo", "sans-serif"],
+        rubik: ["Rubik", "Heebo", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
