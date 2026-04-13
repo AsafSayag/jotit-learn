@@ -7,7 +7,7 @@ const FinalCTA = () => {
 
   return (
     <section className="py-24 hero-section relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-5">
         <div className="absolute w-96 h-96 rounded-full bg-accent blur-3xl -top-20 -left-20" />
         <div className="absolute w-96 h-96 rounded-full bg-primary blur-3xl -bottom-20 -right-20" />
       </div>
