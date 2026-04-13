@@ -27,7 +27,7 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-hero/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        scrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4 lg:px-8">
@@ -46,7 +46,7 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
-              className="text-hero-foreground/80 hover:text-hero-foreground transition-colors text-xs lg:text-sm font-medium relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:right-0 after:bg-accent after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100"
+              className="text-hero-foreground/70 hover:text-hero-foreground transition-colors text-xs lg:text-sm font-medium relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:right-0 after:bg-accent after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100"
             >
               {link.label}
             </a>
@@ -73,7 +73,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-hero/98 backdrop-blur-md border-t border-hero-foreground/10 px-6 pb-6"
+          className="md:hidden bg-white/98 backdrop-blur-md border-t border-hero-foreground/10 px-6 pb-6"
         >
           {navLinks.map((link) => (
             <a
