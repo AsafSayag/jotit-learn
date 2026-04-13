@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { Brain } from "lucide-react";
 import jotitLogo from "@/assets/jotit-logo.png";
 import tabletApp from "@/assets/tablet-app.png";
+import googleClassroomImg from "@/assets/google-classroom.jpg";
 
 const particles = Array.from({ length: 18 }, (_, i) => ({
   id: i,
@@ -86,7 +87,7 @@ const Hero = () => {
             className="absolute -right-4 md:-right-20 lg:-right-32 top-4 md:top-6 flex flex-col items-center gap-1.5"
           >
             <IconFloat>
-              <GoogleClassroomIcon />
+              <img src={googleClassroomImg} alt="Google Classroom" className="w-12 h-12 md:w-16 md:h-16 rounded-lg object-contain" />
             </IconFloat>
             <span className="text-[10px] md:text-xs text-hero-foreground/60 font-medium">Google Classroom</span>
           </motion.div>
