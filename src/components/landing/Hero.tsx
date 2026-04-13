@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Brain } from "lucide-react";
 import jotitLogo from "@/assets/jotit-logo.png";
+import tabletApp from "@/assets/tablet-app.png";
 
 const particles = Array.from({ length: 18 }, (_, i) => ({
   id: i,
@@ -12,8 +13,30 @@ const particles = Array.from({ length: 18 }, (_, i) => ({
   duration: 1.2 + Math.random() * 0.8,
 }));
 
+const floatAnimation = {
+  y: [0, -6, 0],
+  transition: {
+    duration: 3,
+    repeat: Infinity,
+    ease: "easeInOut",
+  },
+};
+
+const glowAnimation = {
+  filter: [
+    "drop-shadow(0 0 4px hsl(190 85% 45% / 0.2))",
+    "drop-shadow(0 0 12px hsl(190 85% 45% / 0.5))",
+    "drop-shadow(0 0 4px hsl(190 85% 45% / 0.2))",
+  ],
+  transition: {
+    duration: 2.5,
+    repeat: Infinity,
+    ease: "easeInOut",
+  },
+};
+
 const GoogleClassroomIcon = () => (
-  <svg viewBox="0 0 48 48" className="w-8 h-8 md:w-10 md:h-10">
+  <svg viewBox="0 0 48 48" className="w-12 h-12 md:w-16 md:h-16">
     <rect width="48" height="48" rx="8" fill="#0F9D58" />
     <rect x="6" y="10" width="36" height="28" rx="3" fill="#57BB8A" />
     <circle cx="24" cy="21" r="4" fill="#F4F4F4" />
@@ -33,8 +56,9 @@ const Hero = () => {
 
   useEffect(() => {
     if (!isInView) return;
-    const t1 = setTimeout(() => setPhase("morphing"), 4800);
-    const t2 = setTimeout(() => setPhase("tablet"), 6400);
+    // Reduced delay: book shows for ~3.8s then morphs, tablet appears 1s later
+    const t1 = setTimeout(() => setPhase("morphing"), 3800);
+    const t2 = setTimeout(() => setPhase("tablet"), 4800);
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [isInView]);
 
@@ -62,24 +86,49 @@ const Hero = () => {
           {/* Google Classroom icon - right side, between logo and headline */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              ...floatAnimation,
+            }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="absolute -right-4 md:-right-16 lg:-right-28 top-4 md:top-6 flex flex-col items-center gap-1"
+            className="absolute -right-4 md:-right-20 lg:-right-32 top-4 md:top-6 flex flex-col items-center gap-1.5"
           >
-            <GoogleClassroomIcon />
+            <motion.div animate={glowAnimation}>
+              <GoogleClassroomIcon />
+            </motion.div>
             <span className="text-[10px] md:text-xs text-hero-foreground/60 font-medium">Google Classroom</span>
           </motion.div>
 
           {/* AI icon - left side, between headline and subheading */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              ...floatAnimation,
+            }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="absolute -left-4 md:-left-16 lg:-left-28 top-[45%] md:top-[40%] flex flex-col items-center gap-1"
+            className="absolute -left-4 md:-left-20 lg:-left-32 top-[45%] md:top-[40%] flex flex-col items-center gap-1.5"
           >
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-[#1B3A5C] flex items-center justify-center">
-              <Brain className="w-5 h-5 md:w-6 md:h-6 text-white" />
-            </div>
+            <motion.div
+              animate={{
+                filter: [
+                  "drop-shadow(0 0 4px hsl(210 85% 40% / 0.2))",
+                  "drop-shadow(0 0 12px hsl(210 85% 40% / 0.5))",
+                  "drop-shadow(0 0 4px hsl(210 85% 40% / 0.2))",
+                ],
+                transition: {
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              }}
+            >
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-[#1B3A5C] flex items-center justify-center">
+                <Brain className="w-7 h-7 md:w-9 md:h-9 text-white" />
+              </div>
+            </motion.div>
             <span className="text-[10px] md:text-xs text-hero-foreground/60 font-medium">AI</span>
           </motion.div>
 
@@ -124,7 +173,7 @@ const Hero = () => {
 
         {/* Book → Tablet animation */}
         <div ref={animRef} className="mt-14 md:mt-20 flex justify-center items-center">
-          <div className="relative w-[220px] h-[280px] sm:w-[260px] sm:h-[340px] md:w-[320px] md:h-[420px]">
+          <div className="relative w-[280px] h-[200px] sm:w-[360px] sm:h-[260px] md:w-[480px] md:h-[340px]">
             {/* Particles during morph */}
             {(phase === "morphing" || phase === "tablet") && particles.map((p) => (
               <motion.div
@@ -178,7 +227,7 @@ const Hero = () => {
               style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
             >
               <div
-                className="w-[80%] h-[85%] rounded-sm shadow-2xl relative overflow-hidden"
+                className="w-[55%] h-[90%] rounded-sm shadow-2xl relative overflow-hidden"
                 style={{
                   background: "linear-gradient(160deg, hsl(25 35% 32%), hsl(20 40% 24%))",
                   border: "2px solid hsl(25 30% 20%)",
@@ -211,7 +260,7 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* Tablet */}
+            {/* Tablet - replaced with uploaded image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.85, rotateY: -30 }}
               animate={{
@@ -223,52 +272,16 @@ const Hero = () => {
               className="absolute inset-0 flex items-center justify-center"
               style={{ perspective: "800px" }}
             >
-              <div
-                className="w-[82%] h-[88%] rounded-2xl md:rounded-3xl flex items-center justify-center relative overflow-hidden"
+              <img
+                src={tabletApp}
+                alt="JOTIT App on tablet"
+                className="w-full h-full object-contain rounded-2xl md:rounded-3xl"
                 style={{
-                  background: "linear-gradient(145deg, hsl(220 20% 18%), hsl(220 25% 12%))",
-                  border: "2px solid hsl(220 15% 30%)",
-                  boxShadow: phase === "tablet"
-                    ? "0 0 60px hsl(var(--glow) / 0.2), 0 25px 50px hsl(220 50% 5% / 0.5), inset 0 1px 0 hsl(220 15% 35%)"
+                  filter: phase === "tablet"
+                    ? "drop-shadow(0 25px 50px hsl(220 50% 5% / 0.4))"
                     : "none",
                 }}
-              >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: phase === "tablet" ? 1 : 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="w-[88%] h-[90%] rounded-lg md:rounded-xl flex items-center justify-center relative overflow-hidden"
-                  style={{
-                    background: "linear-gradient(160deg, hsl(220 55% 12%), hsl(220 60% 18%))",
-                    boxShadow: "inset 0 0 30px hsl(var(--glow) / 0.08)",
-                  }}
-                >
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      background: "radial-gradient(ellipse at 40% 30%, hsl(var(--glow) / 0.12), transparent 60%)",
-                    }}
-                  />
-                  <motion.img
-                    src={jotitLogo}
-                    alt="JOTIT"
-                    className="w-[55%] md:w-[50%] h-auto relative z-10"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{
-                      opacity: phase === "tablet" ? 1 : 0,
-                      scale: phase === "tablet" ? 1 : 0.8,
-                    }}
-                    transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-                    style={{
-                      filter: phase === "tablet" ? "drop-shadow(0 0 16px hsl(var(--glow) / 0.5))" : "none",
-                    }}
-                  />
-                </motion.div>
-                <div
-                  className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 md:w-2 md:h-2 rounded-full"
-                  style={{ background: "hsl(220 15% 30%)" }}
-                />
-              </div>
+              />
             </motion.div>
           </div>
         </div>
