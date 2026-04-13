@@ -13,7 +13,7 @@ const GlobalTrust = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-24 section-pastel-aqua" ref={ref}>
+    <section className="py-24 section-alt" ref={ref}>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -31,7 +31,7 @@ const GlobalTrust = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className="bg-card rounded-2xl p-8 text-center border border-border card-soft transition-shadow"
+              className="bg-card rounded-2xl p-8 text-center border border-border hover:shadow-xl transition-shadow"
             >
               <div className="w-16 h-16 rounded-full gradient-primary flex items-center justify-center mx-auto mb-5">
                 <item.icon className="w-8 h-8 text-accent-foreground" />

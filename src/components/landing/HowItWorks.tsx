@@ -13,7 +13,7 @@ const HowItWorks = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="how-it-works" className="py-24 section-pastel-pink" ref={ref}>
+    <section id="how-it-works" className="py-24 bg-background" ref={ref}>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

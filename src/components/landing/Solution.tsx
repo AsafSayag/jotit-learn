@@ -16,7 +16,7 @@ const Solution = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="what-is-jotit" className="py-24 section-pastel-mint" ref={ref}>
+    <section id="what-is-jotit" className="py-24 section-alt" ref={ref}>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ const Solution = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="bg-card rounded-2xl p-8 text-center border border-border card-soft hover:-translate-y-1 transition-all duration-300"
+              className="bg-card rounded-2xl p-8 text-center border border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center mx-auto mb-5">
                 <f.icon className="w-8 h-8 text-accent-foreground" />

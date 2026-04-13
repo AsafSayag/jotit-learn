@@ -37,20 +37,12 @@
     --radius: 0.75rem;
 
     /* JOTIT custom tokens */
-    --hero-bg: 140 60% 94%;
+    --hero-bg: 210 40% 97%;
     --hero-fg: 220 50% 15%;
-    --section-alt: 200 70% 93%;
+    --section-alt: 210 30% 96%;
     --gradient-start: 220 75% 30%;
     --gradient-end: 190 90% 42%;
     --glow: 190 85% 45%;
-
-    /* Pastel palette */
-    --pastel-mint: 132 80% 90%;
-    --pastel-aqua: 195 100% 87%;
-    --pastel-sky: 215 100% 90%;
-    --pastel-lavender: 234 100% 93%;
-    --pastel-cream: 48 100% 88%;
-    --pastel-pink: 325 100% 92%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -121,7 +113,7 @@
   }
 
   .hero-section {
-    background: linear-gradient(160deg, hsl(var(--hero-bg)), hsl(var(--pastel-aqua)));
+    background: linear-gradient(160deg, hsl(var(--hero-bg)), hsl(210 35% 93%));
   }
 
   .glow-effect {
@@ -129,42 +121,13 @@
   }
 
   .glass-card {
-    background: hsl(0 0% 100% / 0.85);
+    background: hsl(0 0% 100% / 0.7);
     backdrop-filter: blur(12px);
-    border: 1px solid hsl(220 50% 15% / 0.08);
-    box-shadow: 0 4px 24px -4px hsl(220 50% 15% / 0.08), 0 1px 3px hsl(220 50% 15% / 0.04);
+    border: 1px solid hsl(220 50% 15% / 0.12);
   }
 
   .section-alt {
     background: hsl(var(--section-alt));
-  }
-
-  /* Pastel section backgrounds */
-  .section-pastel-mint {
-    background: linear-gradient(170deg, hsl(var(--pastel-mint)), hsl(var(--pastel-mint) / 0.5));
-  }
-  .section-pastel-aqua {
-    background: linear-gradient(170deg, hsl(var(--pastel-aqua)), hsl(var(--pastel-aqua) / 0.5));
-  }
-  .section-pastel-sky {
-    background: linear-gradient(170deg, hsl(var(--pastel-sky)), hsl(var(--pastel-sky) / 0.5));
-  }
-  .section-pastel-lavender {
-    background: linear-gradient(170deg, hsl(var(--pastel-lavender)), hsl(var(--pastel-lavender) / 0.5));
-  }
-  .section-pastel-cream {
-    background: linear-gradient(170deg, hsl(var(--pastel-cream)), hsl(var(--pastel-cream) / 0.5));
-  }
-  .section-pastel-pink {
-    background: linear-gradient(170deg, hsl(var(--pastel-pink)), hsl(var(--pastel-pink) / 0.5));
-  }
-
-  /* Soft card shadow */
-  .card-soft {
-    box-shadow: 0 4px 20px -4px hsl(220 50% 15% / 0.08), 0 1px 4px hsl(220 50% 15% / 0.04);
-  }
-  .card-soft:hover {
-    box-shadow: 0 8px 32px -6px hsl(220 50% 15% / 0.12), 0 2px 6px hsl(220 50% 15% / 0.06);
   }
 }
 

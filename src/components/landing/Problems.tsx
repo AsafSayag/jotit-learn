@@ -15,7 +15,7 @@ const Problems = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-24 section-pastel-cream" ref={ref}>
+    <section className="py-24 bg-background" ref={ref}>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ const Problems = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
-              className="flex gap-5 p-6 rounded-2xl border border-border bg-card card-soft transition-shadow"
+              className="flex gap-5 p-6 rounded-2xl border border-border bg-card hover:shadow-lg transition-shadow"
             >
               <div className="shrink-0 w-14 h-14 rounded-xl gradient-primary flex items-center justify-center">
                 <point.icon className="w-7 h-7 text-accent-foreground" />

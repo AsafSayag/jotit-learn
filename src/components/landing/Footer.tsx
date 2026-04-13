@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="relative overflow-hidden">
       {/* Gradient background - light */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(215,100%,90%)] via-[hsl(195,100%,87%)] to-[hsl(234,100%,93%)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(210,35%,95%)] via-[hsl(210,30%,97%)] to-[hsl(200,40%,96%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--glow)/0.06),transparent_60%)]" />
 
       {/* Top accent line */}

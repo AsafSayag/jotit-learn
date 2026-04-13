@@ -36,13 +36,13 @@ const Results = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="results" className="py-24 section-pastel-lavender" ref={ref}>
+    <section id="results" className="py-24 hero-section" ref={ref}>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-black text-center text-foreground mb-16"
+          className="text-3xl md:text-5xl font-black text-center text-hero-foreground mb-16"
         >
           התוצאות מדברות בעד עצמן
         </motion.h2>
@@ -57,10 +57,10 @@ const Results = () => {
               className="glass-card rounded-2xl p-6 text-center shadow-md"
             >
               <stat.icon className="w-8 h-8 text-glow mx-auto mb-3" />
-              <div className="text-3xl md:text-4xl font-black text-foreground mb-2">
+              <div className="text-3xl md:text-4xl font-black text-hero-foreground mb-2">
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} inView={isInView} />
               </div>
-              <p className="text-muted-foreground text-sm">{stat.label}</p>
+              <p className="text-hero-foreground/70 text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </div>
