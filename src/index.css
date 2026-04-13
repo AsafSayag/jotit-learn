@@ -37,8 +37,8 @@
     --radius: 0.75rem;
 
     /* JOTIT custom tokens */
-    --hero-bg: 220 55% 12%;
-    --hero-fg: 210 40% 98%;
+    --hero-bg: 210 40% 97%;
+    --hero-fg: 220 50% 15%;
     --section-alt: 210 30% 96%;
     --gradient-start: 220 75% 30%;
     --gradient-end: 190 90% 42%;
@@ -113,7 +113,7 @@
   }
 
   .hero-section {
-    background: linear-gradient(160deg, hsl(var(--hero-bg)), hsl(220 60% 18%));
+    background: linear-gradient(160deg, hsl(var(--hero-bg)), hsl(210 35% 93%));
   }
 
   .glow-effect {
@@ -121,9 +121,9 @@
   }
 
   .glass-card {
-    background: hsl(0 0% 100% / 0.08);
+    background: hsl(0 0% 100% / 0.7);
     backdrop-filter: blur(12px);
-    border: 1px solid hsl(0 0% 100% / 0.12);
+    border: 1px solid hsl(220 50% 15% / 0.12);
   }
 
   .section-alt {

@@ -29,8 +29,8 @@ const Hero = () => {
       {/* Ambient background glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full opacity-20 blur-[120px]"
-          style={{ background: "radial-gradient(circle, hsl(var(--glow) / 0.5), transparent 70%)" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full opacity-10 blur-[120px]"
+          style={{ background: "radial-gradient(circle, hsl(var(--glow) / 0.4), transparent 70%)" }}
         />
       </div>
 
@@ -58,7 +58,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="text-lg md:text-xl text-hero-foreground/75 mb-10 leading-relaxed max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-hero-foreground/65 mb-10 leading-relaxed max-w-2xl mx-auto"
           >
             מערכת חכמה לניהול לימודים מלא דרך הטאבלט — סדר, שליטה ושיפור ביצועים בבתי ספר
           </motion.p>
@@ -77,7 +77,7 @@ const Hero = () => {
             </a>
             <a
               href="#contact"
-              className="glass-card text-hero-foreground px-8 py-4 rounded-xl text-lg font-bold hover:bg-hero-foreground/10 transition-all"
+              className="border-2 border-foreground/20 text-hero-foreground px-8 py-4 rounded-xl text-lg font-bold hover:bg-foreground/5 transition-all"
             >
               רוצים לדעת עוד?
             </a>

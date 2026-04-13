@@ -56,7 +56,7 @@ const Results = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-card rounded-2xl p-6 text-center"
+              className="glass-card rounded-2xl p-6 text-center shadow-md"
             >
               <stat.icon className="w-8 h-8 text-glow mx-auto mb-3" />
               <div className="text-3xl md:text-4xl font-black text-hero-foreground mb-2">
