@@ -37,13 +37,13 @@ const FinalCTA = () => {
         >
           <a
             href="#contact"
-            className="bg-accent text-accent-foreground px-10 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20"
+             className="bg-accent text-accent-foreground px-10 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20 border border-foreground/80"
           >
             קביעת פגישה
           </a>
           <a
             href="#contact"
-            className="bg-accent text-accent-foreground px-10 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20"
+            className="bg-accent text-accent-foreground px-10 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20 border border-foreground/80"
           >
             השאירו פרטים
           </a>
