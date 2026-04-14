@@ -13,7 +13,7 @@ const HowItWorks = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="how-it-works" className="py-24 bg-background" ref={ref}>
+    <section id="how-it-works" className="py-28 bg-background" ref={ref}>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -26,9 +26,9 @@ const HowItWorks = () => {
 
         <div className="max-w-4xl mx-auto relative">
           {/* Connector line */}
-          <div className="hidden md:block absolute top-1/2 right-0 left-0 h-0.5 bg-border -translate-y-1/2" />
+          <div className="hidden md:block absolute top-1/2 right-0 left-0 h-0.5 bg-gradient-to-l from-transparent via-accent/30 to-transparent -translate-y-1/2" />
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-10">
             {steps.map((step, i) => (
               <motion.div
                 key={i}
@@ -37,12 +37,12 @@ const HowItWorks = () => {
                 transition={{ duration: 0.5, delay: i * 0.2 }}
                 className="text-center relative"
               >
-                <div className="w-20 h-20 rounded-full gradient-primary flex items-center justify-center mx-auto mb-6 relative z-10 shadow-lg">
+                <div className="w-20 h-20 rounded-full gradient-primary flex items-center justify-center mx-auto mb-6 relative z-10 shadow-lg shadow-accent/20">
                   <step.icon className="w-9 h-9 text-accent-foreground" />
                 </div>
-                <span className="text-sm font-bold text-accent mb-2 block">{step.num}</span>
+                <span className="text-sm font-bold gradient-text mb-2 block">{step.num}</span>
                 <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
-                <p className="text-muted-foreground text-sm">{step.desc}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>

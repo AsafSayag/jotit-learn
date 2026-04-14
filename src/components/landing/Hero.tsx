@@ -14,27 +14,14 @@ const particles = Array.from({ length: 18 }, (_, i) => ({
   duration: 1.2 + Math.random() * 0.8,
 }));
 
-const GoogleClassroomIcon = () => (
-  <svg viewBox="0 0 48 48" className="w-12 h-12 md:w-16 md:h-16">
-    <rect width="48" height="48" rx="8" fill="#0F9D58" />
-    <rect x="6" y="10" width="36" height="28" rx="3" fill="#57BB8A" />
-    <circle cx="24" cy="21" r="4" fill="#F4F4F4" />
-    <path d="M16 31c0-3.3 3.6-6 8-6s8 2.7 8 6" fill="#F4F4F4" />
-    <circle cx="33" cy="20" r="2.5" fill="#F4F4F4" />
-    <path d="M29 28c1.2-0.8 2.8-1.3 4.5-1.3 1.2 0 2.3 0.2 3.3 0.7" stroke="#F4F4F4" strokeWidth="1.5" fill="none" />
-    <circle cx="15" cy="20" r="2.5" fill="#F4F4F4" />
-    <path d="M19 28c-1.2-0.8-2.8-1.3-4.5-1.3-1.2 0-2.3 0.2-3.3 0.7" stroke="#F4F4F4" strokeWidth="1.5" fill="none" />
-  </svg>
-);
-
 const IconFloat = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
   <motion.div
     animate={{
       y: [0, -6, 0],
       filter: [
-        "drop-shadow(0 0 4px hsl(190 85% 45% / 0.2))",
-        "drop-shadow(0 0 14px hsl(190 85% 45% / 0.5))",
-        "drop-shadow(0 0 4px hsl(190 85% 45% / 0.2))",
+        "drop-shadow(0 0 4px hsl(245 58% 58% / 0.2))",
+        "drop-shadow(0 0 14px hsl(245 58% 58% / 0.4))",
+        "drop-shadow(0 0 4px hsl(245 58% 58% / 0.2))",
       ],
     }}
     transition={{
@@ -63,8 +50,8 @@ const Hero = () => {
     <section ref={sectionRef} className="hero-section relative min-h-screen flex items-center overflow-hidden pt-20 pb-12">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full opacity-10 blur-[120px]"
-          style={{ background: "radial-gradient(circle, hsl(var(--glow) / 0.4), transparent 70%)" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full opacity-[0.07] blur-[120px]"
+          style={{ background: "radial-gradient(circle, hsl(var(--glow) / 0.5), transparent 70%)" }}
         />
       </div>
 
@@ -89,7 +76,7 @@ const Hero = () => {
             <IconFloat>
               <img src={googleClassroomImg} alt="Google Classroom" className="w-12 h-12 md:w-16 md:h-16 rounded-lg object-contain" />
             </IconFloat>
-            <span className="text-[10px] md:text-xs text-hero-foreground/60 font-medium">Google Classroom</span>
+            <span className="text-[10px] md:text-xs text-foreground/50 font-medium">Google Classroom</span>
           </motion.div>
 
           {/* AI icon - left side */}
@@ -100,18 +87,18 @@ const Hero = () => {
             className="absolute -left-4 md:-left-20 lg:-left-32 top-[45%] md:top-[40%] flex flex-col items-center gap-1.5"
           >
             <IconFloat delay={0.5}>
-              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-[#1B3A5C] flex items-center justify-center">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl gradient-primary flex items-center justify-center">
                 <Brain className="w-7 h-7 md:w-9 md:h-9 text-white" />
               </div>
             </IconFloat>
-            <span className="text-[10px] md:text-xs text-hero-foreground/60 font-medium">AI</span>
+            <span className="text-[10px] md:text-xs text-foreground/50 font-medium">AI</span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold font-rubik text-hero-foreground leading-tight mb-6 tracking-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold font-rubik text-foreground leading-tight mb-6 tracking-tight"
           >
             מערכת לימוד דיגיטלית מבוססת AI בשילוב כתב יד
           </motion.h1>
@@ -120,7 +107,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="text-lg md:text-xl text-hero-foreground/65 mb-10 leading-relaxed max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-foreground/55 mb-10 leading-relaxed max-w-2xl mx-auto"
           >
             המערכת המתקדמת ביותר ללמידה דיגיטלית - סדר, שליטה, ולמידה אפקטיבית ואישית לכל תלמיד
           </motion.p>
@@ -131,10 +118,10 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.7 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <a href="#video" className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors">
+            <a href="#video" className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-all hover:shadow-lg hover:shadow-[#1B3A5C]/20">
               צפו איך זה עובד
             </a>
-            <a href="#contact" className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-colors">
+            <a href="#contact" className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-all hover:shadow-lg hover:shadow-[#1B3A5C]/20">
               רוצים לדעת עוד?
             </a>
           </motion.div>
@@ -213,7 +200,7 @@ const Hero = () => {
               </div>
             </motion.div>
 
-            {/* Tablet - uploaded image */}
+            {/* Tablet */}
             <motion.div
               initial={{ opacity: 0, scale: 0.85, rotateY: -30 }}
               animate={{

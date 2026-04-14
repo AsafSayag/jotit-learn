@@ -8,17 +8,13 @@ const Footer = () => {
 
   return (
     <footer className="relative overflow-hidden">
-      {/* Gradient background - light */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(210,35%,95%)] via-[hsl(210,30%,97%)] to-[hsl(200,40%,96%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--glow)/0.06),transparent_60%)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(230,25%,96%)] via-[hsl(235,20%,97%)] to-[hsl(245,25%,96%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--glow)/0.04),transparent_60%)]" />
 
-      {/* Top accent line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[hsl(var(--accent))] to-transparent opacity-40" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
-      <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-14 pb-8">
-        {/* Main content */}
+      <div className="relative z-10 container mx-auto px-6 lg:px-12 pt-16 pb-8">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-10 mb-10">
-          {/* Logo & tagline */}
           <div className="flex flex-col items-center md:items-start gap-3">
             <img src={jotitLogo} alt="JOTIT" className="h-11 w-auto" />
             <p className="text-sm text-muted-foreground max-w-[200px] text-center md:text-right">
@@ -26,7 +22,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Navigation */}
           <nav className="flex gap-8 text-sm" dir="rtl">
             {[
               { href: "#what-is-jotit", label: "מה זה JOTIT" },
@@ -43,7 +38,6 @@ const Footer = () => {
             ))}
           </nav>
 
-          {/* Contact */}
           <div className="flex flex-col items-center md:items-end gap-3">
             <a
               href="tel:+972525603424"
@@ -62,10 +56,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-6" />
 
-        {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground/60">
             © 2026 JOTIT. כל הזכויות שמורות.
