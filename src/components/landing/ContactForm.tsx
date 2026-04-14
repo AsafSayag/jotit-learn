@@ -93,7 +93,7 @@ const ContactForm = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-accent text-accent-foreground py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-accent text-accent-foreground py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20 border border-foreground/80 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "שולח..." : "שלחו פרטים ונחזור אליכם"}
               </button>

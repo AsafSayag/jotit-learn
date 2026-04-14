@@ -69,10 +69,10 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.7 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <a href="#video" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20">
+            <a href="#video" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20 border border-foreground/80">
               צפו איך זה עובד
             </a>
-            <a href="#contact" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20">
+            <a href="#contact" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20 border border-foreground/80">
               רוצים לדעת עוד?
             </a>
           </motion.div>
