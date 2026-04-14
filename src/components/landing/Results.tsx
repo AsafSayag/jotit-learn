@@ -36,13 +36,13 @@ const Results = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="results" className="py-24 hero-section" ref={ref}>
+    <section id="results" className="py-28 hero-section" ref={ref}>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-black text-center text-hero-foreground mb-16"
+          className="text-3xl md:text-5xl font-black text-center text-foreground mb-20"
         >
           התוצאות מדברות בעד עצמן
         </motion.h2>
@@ -54,13 +54,15 @@ const Results = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-card rounded-2xl p-6 text-center shadow-md"
+              className="glass-card rounded-2xl p-8 text-center group"
             >
-              <stat.icon className="w-8 h-8 text-glow mx-auto mb-3" />
-              <div className="text-3xl md:text-4xl font-black text-hero-foreground mb-2">
+              <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <stat.icon className="w-6 h-6 text-accent-foreground" />
+              </div>
+              <div className="text-4xl md:text-5xl font-black gradient-text mb-3">
                 <AnimatedCounter target={stat.value} suffix={stat.suffix} inView={isInView} />
               </div>
-              <p className="text-hero-foreground/70 text-sm">{stat.label}</p>
+              <p className="text-foreground/60 text-sm font-medium">{stat.label}</p>
             </motion.div>
           ))}
         </div>

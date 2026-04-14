@@ -94,13 +94,13 @@ const VideoSection = () => {
   }, []);
 
   return (
-    <section id="video" className="py-24 bg-background" ref={ref}>
+    <section id="video" className="py-28 bg-background" ref={ref}>
       <div className="container mx-auto px-4 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-black text-center text-foreground mb-16"
+          className="text-3xl md:text-5xl font-black text-center text-foreground mb-20"
         >
           ראו את המערכת בפעולה
         </motion.h2>
@@ -112,7 +112,7 @@ const VideoSection = () => {
           className="max-w-4xl mx-auto"
         >
           <div
-            className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video group cursor-pointer select-none"
+            className="relative rounded-3xl overflow-hidden shadow-[0_8px_60px_hsl(222_47%_14%/0.12)] aspect-video group cursor-pointer select-none"
             onMouseEnter={showControlsTemporarily}
             onMouseMove={showControlsTemporarily}
             onMouseLeave={() => isPlaying && setShowControls(false)}
@@ -146,7 +146,7 @@ const VideoSection = () => {
                 showControls || !isPlaying ? "opacity-100" : "opacity-0"
               }`}
             >
-              <div className="bg-black/40 backdrop-blur-sm rounded-full p-5 transition-transform duration-200 group-hover:scale-110">
+              <div className="bg-black/30 backdrop-blur-md rounded-full p-5 transition-transform duration-200 group-hover:scale-110">
                 {isPlaying ? (
                   <Pause className="w-10 h-10 text-white" fill="white" />
                 ) : (
@@ -157,7 +157,7 @@ const VideoSection = () => {
 
             {/* Bottom control bar */}
             <div
-              className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-4 pb-3 pt-8 transition-opacity duration-300 ${
+              className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-4 pb-3 pt-8 transition-opacity duration-300 ${
                 showControls || !isPlaying ? "opacity-100" : "opacity-0"
               }`}
               onClick={(e) => e.stopPropagation()}
@@ -170,7 +170,7 @@ const VideoSection = () => {
                 onTouchStart={handleProgressMouseDown}
               >
                 <div
-                  className="h-full bg-primary rounded-full relative transition-none"
+                  className="h-full bg-accent rounded-full relative transition-none"
                   style={{ width: `${progress}%` }}
                 >
                   <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white rounded-full shadow-md opacity-0 group-hover/bar:opacity-100 transition-opacity duration-150" />

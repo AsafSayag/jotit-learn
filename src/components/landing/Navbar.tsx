@@ -27,13 +27,15 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-transparent"
+        scrolled
+          ? "bg-white/90 backdrop-blur-xl shadow-[0_1px_20px_hsl(222_47%_14%/0.06)] border-b border-border/50"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4 lg:px-8">
         <motion.a
           href="#"
-          whileHover={{ scale: 1.03, filter: "drop-shadow(0 0 12px hsl(190 85% 45% / 0.5))" }}
+          whileHover={{ scale: 1.03 }}
           className="block"
         >
           <img src={jotitLogo} alt="JOTIT" className="h-10 w-auto" />
@@ -44,20 +46,20 @@ const Navbar = () => {
             <a
               key={link.href}
               href={link.href}
-              className="text-hero-foreground/70 hover:text-hero-foreground transition-colors text-xs lg:text-sm font-medium relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:right-0 after:bg-accent after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100"
+              className="text-foreground/60 hover:text-foreground transition-colors text-xs lg:text-sm font-medium relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-[-4px] after:right-0 after:bg-accent after:origin-right after:transition-transform after:duration-300 hover:after:scale-x-100 after:rounded-full"
             >
               {link.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="bg-[#1B3A5C] text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-lg text-xs lg:text-sm font-bold hover:bg-[#152E4A] transition-colors"
+            className="bg-[#1B3A5C] text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-xl text-xs lg:text-sm font-bold hover:bg-[#152E4A] transition-all hover:shadow-lg hover:shadow-[#1B3A5C]/20"
           >
             קביעת פגישה
           </a>
         </div>
 
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-hero-foreground">
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden text-foreground">
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -66,14 +68,14 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white/98 backdrop-blur-md border-t border-hero-foreground/10 px-6 pb-6"
+          className="md:hidden bg-white/98 backdrop-blur-xl border-t border-border/50 px-6 pb-6"
         >
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block py-3 text-hero-foreground/80 hover:text-hero-foreground transition-colors font-medium"
+              className="block py-3 text-foreground/70 hover:text-foreground transition-colors font-medium"
             >
               {link.label}
             </a>
@@ -81,7 +83,7 @@ const Navbar = () => {
           <a
             href="#contact"
             onClick={() => setMobileOpen(false)}
-            className="block mt-3 bg-[#1B3A5C] text-white px-6 py-3 rounded-lg text-center font-bold hover:bg-[#152E4A]"
+            className="block mt-3 bg-[#1B3A5C] text-white px-6 py-3 rounded-xl text-center font-bold hover:bg-[#152E4A]"
           >
             קביעת פגישה
           </a>
