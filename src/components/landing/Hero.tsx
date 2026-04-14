@@ -1,9 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { Brain } from "lucide-react";
 import jotitLogo from "@/assets/jotit-logo.png";
 import tabletApp from "@/assets/tablet-app.png";
-import googleClassroomImg from "@/assets/google-classroom.jpg";
 
 const particles = Array.from({ length: 18 }, (_, i) => ({
   id: i,
@@ -13,25 +11,6 @@ const particles = Array.from({ length: 18 }, (_, i) => ({
   delay: Math.random() * 0.8,
   duration: 1.2 + Math.random() * 0.8,
 }));
-
-const IconFloat = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => (
-  <motion.div
-    animate={{
-      y: [0, -6, 0],
-      filter: [
-        "drop-shadow(0 0 4px hsl(245 58% 58% / 0.2))",
-        "drop-shadow(0 0 14px hsl(245 58% 58% / 0.4))",
-        "drop-shadow(0 0 4px hsl(245 58% 58% / 0.2))",
-      ],
-    }}
-    transition={{
-      y: { duration: 3, repeat: Infinity, ease: "easeInOut" as const, delay },
-      filter: { duration: 2.5, repeat: Infinity, ease: "easeInOut" as const, delay },
-    }}
-  >
-    {children}
-  </motion.div>
-);
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -66,34 +45,6 @@ const Hero = () => {
             <img src={jotitLogo} alt="JOTIT" className="h-16 md:h-20 w-auto glow-effect" />
           </motion.div>
 
-          {/* Google Classroom icon - right side */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="absolute -right-4 md:-right-20 lg:-right-32 top-4 md:top-6 flex flex-col items-center gap-1.5"
-          >
-            <IconFloat>
-              <img src={googleClassroomImg} alt="Google Classroom" className="w-12 h-12 md:w-16 md:h-16 rounded-lg object-contain" />
-            </IconFloat>
-            <span className="text-[10px] md:text-xs text-foreground/50 font-medium">Google Classroom</span>
-          </motion.div>
-
-          {/* AI icon - left side */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            className="absolute -left-4 md:-left-20 lg:-left-32 top-[45%] md:top-[40%] flex flex-col items-center gap-1.5"
-          >
-            <IconFloat delay={0.5}>
-              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl gradient-primary flex items-center justify-center">
-                <Brain className="w-7 h-7 md:w-9 md:h-9 text-white" />
-              </div>
-            </IconFloat>
-            <span className="text-[10px] md:text-xs text-foreground/50 font-medium">AI</span>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,10 +69,10 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.7 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <a href="#video" className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-all hover:shadow-lg hover:shadow-[#1B3A5C]/20">
+            <a href="#video" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20">
               צפו איך זה עובד
             </a>
-            <a href="#contact" className="bg-[#1B3A5C] text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-[#152E4A] transition-all hover:shadow-lg hover:shadow-[#1B3A5C]/20">
+            <a href="#contact" className="bg-accent text-accent-foreground px-8 py-4 rounded-xl text-lg font-bold hover:opacity-90 transition-all hover:shadow-lg hover:shadow-accent/20">
               רוצים לדעת עוד?
             </a>
           </motion.div>

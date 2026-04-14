@@ -15,16 +15,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 14%;
 
-    --primary: 224 65% 42%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 210 60% 72%;
+    --primary-foreground: 222 47% 14%;
 
-    --secondary: 230 40% 96%;
-    --secondary-foreground: 224 60% 30%;
+    --secondary: 210 40% 95%;
+    --secondary-foreground: 222 40% 25%;
 
     --muted: 220 20% 96%;
     --muted-foreground: 220 10% 46%;
 
-    --accent: 245 58% 58%;
+    --accent: 210 60% 72%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -32,20 +32,20 @@
 
     --border: 220 20% 92%;
     --input: 220 20% 92%;
-    --ring: 224 65% 42%;
+    --ring: 210 60% 72%;
 
     --radius: 1rem;
 
     /* JOTIT custom tokens */
-    --hero-bg: 230 30% 97%;
+    --hero-bg: 220 30% 97%;
     --hero-fg: 222 47% 14%;
-    --section-alt: 235 25% 97%;
-    --gradient-start: 224 65% 42%;
-    --gradient-end: 245 58% 58%;
-    --glow: 245 58% 58%;
-    --soft-blue: 220 60% 96%;
-    --soft-purple: 245 40% 96%;
-    --soft-teal: 180 40% 96%;
+    --section-alt: 220 25% 97%;
+    --gradient-start: 210 60% 78%;
+    --gradient-end: 220 55% 68%;
+    --glow: 210 60% 72%;
+    --soft-blue: 210 50% 96%;
+    --soft-purple: 220 35% 96%;
+    --soft-teal: 200 40% 96%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -64,19 +64,19 @@
     --card-foreground: 210 40% 98%;
     --popover: 220 50% 12%;
     --popover-foreground: 210 40% 98%;
-    --primary: 245 58% 58%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 210 60% 72%;
+    --primary-foreground: 222 47% 14%;
     --secondary: 217 33% 18%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217 33% 18%;
     --muted-foreground: 215 20% 65%;
-    --accent: 245 58% 58%;
+    --accent: 210 60% 72%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
     --border: 217 33% 18%;
     --input: 217 33% 18%;
-    --ring: 245 58% 58%;
+    --ring: 210 60% 72%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -161,6 +161,6 @@
 }
 
 .a11y-highlight-links a {
-  outline: 2px solid hsl(245 58% 58%) !important;
+  outline: 2px solid hsl(210 60% 72%) !important;
   outline-offset: 2px;
 }
